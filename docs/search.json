@@ -1,0 +1,86 @@
+[
+  {
+    "objectID": "resume.html",
+    "href": "resume.html",
+    "title": "Resume",
+    "section": "",
+    "text": "To protect my phone from spam calls, I have redacted my phone number from this copy of my resume. If you found this website from a job application I submitted to you, or I shared my resume with you, my phone number is on the copy I shared with you. Otherwise feel free to email me, and I’d be happy to chat!"
+  },
+  {
+    "objectID": "posts/wiimote_elrs/index.html",
+    "href": "posts/wiimote_elrs/index.html",
+    "title": "Wii Remote ELRS Control Scheme for Combat Robots",
+    "section": "",
+    "text": "This is thumbnail text\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+  },
+  {
+    "objectID": "posts/pmodthingy/index.html",
+    "href": "posts/pmodthingy/index.html",
+    "title": "PMOD Thingy",
+    "section": "",
+    "text": "This is thumbnail text\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+  },
+  {
+    "objectID": "posts/lfi_mqp/index.html",
+    "href": "posts/lfi_mqp/index.html",
+    "title": "Major Qualifying Project: Laser Fault Injection",
+    "section": "",
+    "text": "This is thumbnail text\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+  },
+  {
+    "objectID": "posts/guitarhero/index.html",
+    "href": "posts/guitarhero/index.html",
+    "title": "Guitar Hero, But With An Actual Guitar",
+    "section": "",
+    "text": "This is thumbnail text\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+  },
+  {
+    "objectID": "posts/beetleweight/index.html",
+    "href": "posts/beetleweight/index.html",
+    "title": "3lb “Beetleweight” Combat Robot",
+    "section": "",
+    "text": "This is thumbnail text\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Kyle Mitard",
+    "section": "",
+    "text": "Hi! I am Kyle Mitard. I am a PhD Student at WPI studying Electrical and Computer Engineering. I received my BS in Electrical and Computer Engineering from WPI in 2023, where as part of my Major Qualifying Project (undergraduate capstone for those unfamiliar with WPI lingo) I hacked an FPGA with lasers. This led to me becoming a research assistant at WPI Vernam Lab researching hardware security as a part of the WPI Vernam Lab under Prof. Shahin Tajik and supported by the Draper Scholars Program.\nIn my studies, I explore the security implications of Laser Voltage Probing (LVP), a novel and powerful technique for IC failure analysis. You see, the really goofy thing about failure analysis is that it opens the door to reverse engineering and extracting cryprographic keys, and as a result we need to develop countermeasures. This is especially important in a globalized semiconductor supply chain, where chips are designed in the US, fabricated in Taiwan, and often assembled into devices in China (for a deeper dive I recommend reading Chip War by Chris Miller). I developed one of the first FPGA-based sensors to detect LVP and presented it at the 2024 International Conference for Computer Aided Design (ICCAD) based on sensors used for remote power analysis attacks, and currently I am continuing to refine it.\nI believe in learning through reverse engineering. I have a knack for diving into schematics and poking at circuits with an oscilloscope to debug them, which I’ve honed through my 3 years as a TA for ECE 2010 - WPI’s Intro to Electrical and Computer Engineering course, some of my old breadboarding hobby projects, and a summer internship at CommScope where I performed exhaustive design verification testing on a prototype of their next-gen remote OLT (I’m fairly certain it’s this one). Through those experiences, I’ve learned a thing or two about the design of practical circuits, and I’ve used that knowledge to design some PCBs myself, such as the PMOD Thingy, a repackaged Arduino Leonardo designed to make my research on Digilent FPGAs more streamlined.\nAs a hobby, a bunch of my friends with mechanical engineering degrees are big into combat robotics, and they’ve inspited me to give it a shot as well. I’ve learned a decent amount of mechanical engineering through the trial by fire of building combat robots myself as a hobby, and through that I’ve become reasonably comfortable with SolidWorks and OnShape, as well as learning my way around a 3D printer. I also enjoy video editing as a hobby, and that manifests itself in my YouTube channel, Kyle’s Maybe Electrical Emporium, where I showcase various projects I’ve delved myself into, both to show things to my friends in an entertaining and chaotic manner, but also as somewhat of an “engineering portfolio.”\nThis website is sort of an extension to my YouTube channel. I still want to make videos, but that is a long and involved process that causes many projects to never see the light of day. I am currently in the process of chronicling these projects, as well as giving some extra info about my YouTube video projects that either didn’t make it in the video or happened after the fact.\nWith regards to my YouTube Channel: I am not interested in any sponsorships, brand partnerships, multi-channel networks, or anything analogous to that. Do not contact me about such things."
+  },
+  {
+    "objectID": "posts/ece505cpu/index.html",
+    "href": "posts/ece505cpu/index.html",
+    "title": "RISC-V CPU RTL Design",
+    "section": "",
+    "text": "This is thumbnail text\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+  },
+  {
+    "objectID": "posts/laserescape/index.html",
+    "href": "posts/laserescape/index.html",
+    "title": "LaserEscape: Detecting and Mitigating Optical Probing Attacks",
+    "section": "",
+    "text": "This is thumbnail text\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+  },
+  {
+    "objectID": "posts/plant/index.html",
+    "href": "posts/plant/index.html",
+    "title": "1lb “Plastic Antweight” Combat Robot",
+    "section": "",
+    "text": "This is thumbnail text\n\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+  },
+  {
+    "objectID": "posts/template/index.html",
+    "href": "posts/template/index.html",
+    "title": "POST TEMPLATE",
+    "section": "",
+    "text": "This is thumbnail text\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Projects",
+    "section": "",
+    "text": "MOST OF THESE ARE UNDER CONSTRUCTION - STAY TUNED!\nor dont im not your dad\n\n\nKyle’s Blog? Portfolio? Things he’s made and done?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3lb “Beetleweight” Combat Robot\n\n\n\nHobby Projects\n\n\n\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nRISC-V CPU RTL Design\n\n\n\nSchoolwork\n\n\n\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nGuitar Hero, But With An Actual Guitar\n\n\n\nSchoolwork\n\nHobby Projects\n\n\n\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nLaserEscape: Detecting and Mitigating Optical Probing Attacks\n\n\n\nResearch\n\nYouTube Videos\n\n\n\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nMajor Qualifying Project: Laser Fault Injection\n\n\n\nSchoolwork\n\nYouTube Videos\n\n\n\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n1lb “Plastic Antweight” Combat Robot\n\n\n\nHobby Projects\n\nYouTube Videos\n\n\n\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nPMOD Thingy\n\n\n\nResearch\n\n\n\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nPOST TEMPLATE\n\n\n\nSchoolwork\n\nResearch\n\nHobby Projects\n\nYouTube Videos\n\n\n\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nWii Remote ELRS Control Scheme for Combat Robots\n\n\n\nHobby Projects\n\n\n\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\nNo matching items"
+  }
+]

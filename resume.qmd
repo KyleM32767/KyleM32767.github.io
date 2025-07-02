@@ -1,0 +1,10 @@
+---
+title: "Resume"
+image: placeholder.JPG
+
+---
+
+**To protect my phone from spam calls, I have redacted my phone number from this copy of my resume. If you found this website from a job application I submitted to you, or I shared my resume with you, my phone number is on the copy I shared with you. Otherwise feel free to [email me](mailto:krmitard@wpi.edu), and I'd be happy to chat!**
+
+
+<embed src="kyle_mitard_resume_number_redacted.pdf" width="100%" height="175%" />

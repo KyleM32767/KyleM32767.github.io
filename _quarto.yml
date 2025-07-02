@@ -1,0 +1,26 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Kyle Mitard"
+  navbar:
+    left:
+      - projects.qmd
+      - resume.qmd
+    right:
+      - icon: github
+        href: https://github.com/KyleM32767
+      - icon: linkedin
+        href: https://www.linkedin.com/in/kyle-mitard62
+      - icon: youtube
+        href: https://www.youtube.com/channel/UCtGWKR7W_5xtZDwKDi8d-TQ
+format:
+  html:
+    theme:
+      - flatly
+    page-layout: full
+    css: styles.css
+
+
+

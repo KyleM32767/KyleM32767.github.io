@@ -1,0 +1,18 @@
+---
+title: "Projects"
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: true
+  sort-ui: false
+  filter-ui: false
+page-layout: full
+title-block-banner: true
+---
+
+# MOST OF THESE ARE UNDER CONSTRUCTION - STAY TUNED!
+or dont im not your dad
+
+
+# Kyle's Blog? Portfolio? Things he's made and done?
