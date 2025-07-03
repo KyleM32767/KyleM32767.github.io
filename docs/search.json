@@ -11,35 +11,63 @@
     "href": "posts/wiimote_elrs/index.html",
     "title": "Wii Remote ELRS Control Scheme for Combat Robots",
     "section": "",
-    "text": "This is thumbnail text\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+    "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
   },
   {
     "objectID": "posts/pmodthingy/index.html",
     "href": "posts/pmodthingy/index.html",
     "title": "PMOD Thingy",
     "section": "",
-    "text": "This is thumbnail text\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+    "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
   },
   {
     "objectID": "posts/lfi_mqp/index.html",
     "href": "posts/lfi_mqp/index.html",
     "title": "Major Qualifying Project: Laser Fault Injection",
     "section": "",
-    "text": "This is thumbnail text\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+    "text": "[written 2 Jul 2025]\nMy first foray into the realm of hardware security came from my Major Qualifying Project (MQP), where my advisor gave me a Digilent Genesys2 board with a Xilinx Kintex-7 FPGA, access to an AlphaNov Laser Microscope, and left me to figure out how to inject faults. The project was runner up for the ECE department’s provost award and an accompanying video won the ECE department’s MQP video contest.\nRead the report I submitted here"
+  },
+  {
+    "objectID": "posts/lfi_mqp/index.html#part-0---working-around-the-green-box",
+    "href": "posts/lfi_mqp/index.html#part-0---working-around-the-green-box",
+    "title": "Major Qualifying Project: Laser Fault Injection",
+    "section": "Part 0 - Working around the green box",
+    "text": "Part 0 - Working around the green box\nTypically for projects on these FPGA development boards, one would use the on-board switches and LEDs to control the FPGA. However, the FPGA being inside the laser microscope enclosure means I can’t touch it, and even if I could touch it, that would mess up the focus and aiming of the laser. I connected an Arduino to the PMOD headers and communicated to from a computer outside the enclosure over UART.\nInitially I used whatever 3.3V Arduino boards I had lying around (such as the ESP32 dev board pictured above), then I modified an Arduino Uno to run on 3.3V by replacing the on-board 5V regulator with a 3.3V one. I would use this setup for basically all future FPGA projects at Vernam Lab, and eventually I designed the PMOD Thingy, a board based on the Arduino Leonardo specifically designed for this purpose."
+  },
+  {
+    "objectID": "posts/lfi_mqp/index.html#part-1---where-is-the-lut-i-care-about-photon-emission",
+    "href": "posts/lfi_mqp/index.html#part-1---where-is-the-lut-i-care-about-photon-emission",
+    "title": "Major Qualifying Project: Laser Fault Injection",
+    "section": "Part 1 - where is the LUT I care about? (Photon Emission)",
+    "text": "Part 1 - where is the LUT I care about? (Photon Emission)\nFPGAs, such as the Kintex-7, consist of hundreds of thousands of lookup tables (LUTs) for combinational logic and registers for sequential logic, so to find a fault-sensitive spot for a specific register, we need to locate it among the many others. To locate LUTs and registers, I configured them to flip rapidly, which emits a very small but detectable amount of infrared light due to the P-N junctions of the transistors, just like an LED. We can produce a “photon emission” image by placing the FPGA in a very dark box and looking at it with a very sensitive camera."
+  },
+  {
+    "objectID": "posts/lfi_mqp/index.html#part-2---brute-force-laser-search",
+    "href": "posts/lfi_mqp/index.html#part-2---brute-force-laser-search",
+    "title": "Major Qualifying Project: Laser Fault Injection",
+    "section": "Part 2 - Brute force laser search",
+    "text": "Part 2 - Brute force laser search\nUsing the APIs provided with the AlphaNov laser microscope, I automated a brute force search to determine which spots are sensitive to faults. The process of a) shoot laser, b) check for faults, c) reload bitstream was a lengthy process, but using the photon emission results I was able to narrow down the search area and reduce the time from days (impractical due to focus drift) to tens of minutes. Furthermore, I was able to make a map, such as the one below which shows fault-sensitive locations of eight registers\n\nUsing this map, I was able to introduce a forbidden state transition on a simple finite state machine. This was only possible because states had binary coding, the forbidden transition involved a single bit flip (or as the cool kids would say, the states had a hamming distance of 1). In addition, I helped a few other students at Vernam Lab recreate my results, and they used that knowledge to help them attack secure neural network inference. I was awarded an author credit on their paper - presented at CHES 2024 - for helping helping them out."
+  },
+  {
+    "objectID": "posts/lfi_mqp/index.html#the-youtube-video",
+    "href": "posts/lfi_mqp/index.html#the-youtube-video",
+    "title": "Major Qualifying Project: Laser Fault Injection",
+    "section": "The YouTube video",
+    "text": "The YouTube video\nThe WPI Electrical and Computer Engineering department holds an MQP video contest, which I entered and won first place. However that video had to be around 3 minutes long, and to meet that target I made some omissions and had some pacing issues. Below is a “director’s cut” that I uploaded to my YouTube channel a while later. Apparently it got a small amount of traction, and I didn’t realize until a fellow PhD student from UMass Amherst I was collaborating with found it on r/FPGA (he thought it was me, but I don’t post on Reddit)."
   },
   {
     "objectID": "posts/guitarhero/index.html",
     "href": "posts/guitarhero/index.html",
     "title": "Guitar Hero, But With An Actual Guitar",
     "section": "",
-    "text": "This is thumbnail text\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+    "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
   },
   {
     "objectID": "posts/beetleweight/index.html",
     "href": "posts/beetleweight/index.html",
     "title": "3lb “Beetleweight” Combat Robot",
     "section": "",
-    "text": "This is thumbnail text\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+    "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
   },
   {
     "objectID": "index.html",
@@ -53,34 +81,34 @@
     "href": "posts/ece505cpu/index.html",
     "title": "RISC-V CPU RTL Design",
     "section": "",
-    "text": "This is thumbnail text\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+    "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
   },
   {
     "objectID": "posts/laserescape/index.html",
     "href": "posts/laserescape/index.html",
     "title": "LaserEscape: Detecting and Mitigating Optical Probing Attacks",
     "section": "",
-    "text": "This is thumbnail text\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+    "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
   },
   {
     "objectID": "posts/plant/index.html",
     "href": "posts/plant/index.html",
     "title": "1lb “Plastic Antweight” Combat Robot",
     "section": "",
-    "text": "This is thumbnail text\n\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+    "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
   },
   {
     "objectID": "posts/template/index.html",
     "href": "posts/template/index.html",
     "title": "POST TEMPLATE",
     "section": "",
-    "text": "This is thumbnail text\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+    "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
   },
   {
     "objectID": "projects.html",
     "href": "projects.html",
     "title": "Projects",
     "section": "",
-    "text": "MOST OF THESE ARE UNDER CONSTRUCTION - STAY TUNED!\nor dont im not your dad\n\n\nKyle’s Blog? Portfolio? Things he’s made and done?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3lb “Beetleweight” Combat Robot\n\n\n\nHobby Projects\n\n\n\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nRISC-V CPU RTL Design\n\n\n\nSchoolwork\n\n\n\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nGuitar Hero, But With An Actual Guitar\n\n\n\nSchoolwork\n\nHobby Projects\n\n\n\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nLaserEscape: Detecting and Mitigating Optical Probing Attacks\n\n\n\nResearch\n\nYouTube Videos\n\n\n\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nMajor Qualifying Project: Laser Fault Injection\n\n\n\nSchoolwork\n\nYouTube Videos\n\n\n\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n1lb “Plastic Antweight” Combat Robot\n\n\n\nHobby Projects\n\nYouTube Videos\n\n\n\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nPMOD Thingy\n\n\n\nResearch\n\n\n\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nPOST TEMPLATE\n\n\n\nSchoolwork\n\nResearch\n\nHobby Projects\n\nYouTube Videos\n\n\n\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nWii Remote ELRS Control Scheme for Combat Robots\n\n\n\nHobby Projects\n\n\n\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\nNo matching items"
+    "text": "MOST OF THESE ARE UNDER CONSTRUCTION - STAY TUNED!\nor dont im not your dad\n\n\nKyle’s Blog? Portfolio? Things he’s made and done?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3lb “Beetleweight” Combat Robot\n\n\n\nHobby Projects\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nRISC-V CPU RTL Design\n\n\n\nSchoolwork\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nGuitar Hero, But With An Actual Guitar\n\n\n\nSchoolwork\n\nHobby Projects\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nLaserEscape: Detecting and Mitigating Optical Probing Attacks\n\n\n\nResearch\n\nYouTube Videos\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n1lb “Plastic Antweight” Combat Robot\n\n\n\nHobby Projects\n\nYouTube Videos\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nPMOD Thingy\n\n\n\nResearch\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nPOST TEMPLATE\n\n\n\nSchoolwork\n\nResearch\n\nHobby Projects\n\nYouTube Videos\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nWii Remote ELRS Control Scheme for Combat Robots\n\n\n\nHobby Projects\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMajor Qualifying Project: Laser Fault Injection\n\n\n\nSchoolwork\n\nYouTube Videos\n\n\n\nFPGAs deserve to feel pain. Pew pew pew\n\n\n\n\n\n\nApr 25, 2024\n\n\n\n\n\n\nNo matching items"
   }
 ]

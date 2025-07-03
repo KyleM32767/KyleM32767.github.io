@@ -3,9 +3,9 @@ title: "Wii Remote ELRS Control Scheme for Combat Robots"
 date: "2025-07-02"
 categories: [Hobby Projects]
 image: "20240823_002548.jpg"
+description: This is thumbnail text
 ---
 
-This is thumbnail text
 
 
 

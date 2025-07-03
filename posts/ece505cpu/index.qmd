@@ -3,9 +3,9 @@ title: "RISC-V CPU RTL Design"
 date: "2025-07-02"
 categories: [Schoolwork]
 image: "../../placeholder.JPG"
+description: This is thumbnail text
 ---
 
-This is thumbnail text
 
 
 

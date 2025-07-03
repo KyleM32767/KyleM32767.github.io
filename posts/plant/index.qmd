@@ -3,9 +3,9 @@ title: "1lb \"Plastic Antweight\" Combat Robot"
 date: "2025-07-02"
 categories: [Hobby Projects, YouTube Videos]
 image: "20231209_154956.jpg"
+description: This is thumbnail text
 ---
 
-This is thumbnail text
 
 ![](20231209_154956.jpg)
 

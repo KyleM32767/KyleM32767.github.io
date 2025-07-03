@@ -3,9 +3,9 @@ title: "Guitar Hero, But With An Actual Guitar"
 date: "2025-07-02"
 categories: [Schoolwork, Hobby Projects]
 image: "../../placeholder.JPG"
+description: This is thumbnail text
 ---
 
-This is thumbnail text
 
 
 

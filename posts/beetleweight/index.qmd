@@ -3,9 +3,9 @@ title: "3lb \"Beetleweight\" Combat Robot"
 date: "2025-07-02"
 categories: [Hobby Projects]
 image: "thumbnail.jpg"
+description: This is thumbnail text
 ---
 
-This is thumbnail text
 
 
 

@@ -3,9 +3,9 @@ title: "POST TEMPLATE"
 date: "2025-07-02"
 categories: [Schoolwork, Research, Hobby Projects, YouTube Videos]
 image: "../../placeholder.JPG"
+description: This is thumbnail text
 ---
 
-This is thumbnail text
 
 
 

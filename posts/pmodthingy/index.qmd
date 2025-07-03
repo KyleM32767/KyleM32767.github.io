@@ -3,9 +3,9 @@ title: "PMOD Thingy"
 date: "2025-07-02"
 categories: [Research]
 image: "board.jpg"
+description: This is thumbnail text
 ---
 
-This is thumbnail text
 
 
 
