@@ -8,11 +8,11 @@ description: FPGAs deserve to feel pain. Pew pew pew
 
 [written 2 Jul 2025]
 
-My first foray into the realm of hardware security came from my Major Qualifying Project (MQP), where my advisor gave me a [Digilent Genesys2 board with a Xilinx Kintex-7 FPGA](https://digilent.com/reference/programmable-logic/genesys-2/start), access to an AlphaNov Laser Microscope, and left me to figure out how to inject faults. The project was runner up for the ECE department's provost award and an accompanying video won the ECE department's MQP video contest.
-
-***[Read the report I submitted here]()***
+***[Read the report I submitted here](https://digital.wpi.edu/concern/student_works/1v53k1455)***
 
 ![](thumbnail.jpg)
+
+My first foray into the realm of hardware security came from my Major Qualifying Project (MQP), where my advisor gave me a [Digilent Genesys2 board with a Xilinx Kintex-7 FPGA](https://digilent.com/reference/programmable-logic/genesys-2/start), access to an AlphaNov Laser Microscope, and left me to figure out how to inject faults. The project was runner up for the ECE department's provost award and an accompanying video won the ECE department's MQP video contest.
 
 ## Part 0 - Working around the green box
 

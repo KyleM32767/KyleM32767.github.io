@@ -6,8 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-07-02">
-<meta name="description" content="This is thumbnail text">
+<meta name="dcterms.date" content="2024-12-17">
+<meta name="description" content="Arduino Leonardo based PCB to streamline FPGA experiments">
 
 <title>PMOD Thingy – Kyle Mitard</title>
 <style>
@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -130,7 +165,7 @@ ul.task-list li input[type="checkbox"] {
       <h1 class="title">PMOD Thingy</h1>
                   <div>
         <div class="description">
-          This is thumbnail text
+          Arduino Leonardo based PCB to streamline FPGA experiments
         </div>
       </div>
                           <div class="quarto-categories">
@@ -146,7 +181,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">July 2, 2025</p>
+        <p class="date">December 17, 2024</p>
       </div>
     </div>
     
@@ -165,7 +200,38 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+<p>[written 2 Jul 2025]</p>
+<p><strong><em><a href="https://github.com/KyleM32767/PMOD-Thingy/">View the GitHub repository for the PMOD Thingy here</a></em></strong></p>
+<p><img src="board.jpg" class="img-fluid"></p>
+<p>Typically for projects on FPGA development boards, one would use the on-board switches and LEDs to control the FPGA. However, most of my research involves the board being inside a laser microscope enclosure, such as my <a href="../../posts/lfi_mqp/index.html">Laser Fault Injection project</a> and <a href="../../posts/laserescape/index.html">the LaserEscape paper</a>. This means I can’t touch it, and even if I could touch it, that would mess up the focus and aiming of the laser. I connected an Arduino to the PMOD headers and communicated to from a computer outside the enclosure over UART. The PMOD Thingy is a custom Arduino board designed in KiCad based on the Arduino Leonardo specifically designed for this purpose, with IO pins in the shape of PMOD headers, as well as another set of passthrough pins for oscilloscope probes.</p>
+<p>The schematic is very similar to the Arduino Leonardo, which I chose as a basis since the built-in USB makes the schematic simpler and frees up the UART interface (on the Uno, UART is shared between pins 0/1 and the USB port). The main differences are that it runs on 3.3V instead of 5V, there is a slower 8MHz clock, the barrel jack was removed, and the pins were remapped. I remapped the pins such that all of IO port B was on one PMOD header, and all of IO port D was another PMOD header. This allows for efficient, atomic reads and writes to all pins on a PMOD header, if that is desired.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// output 0 on JA6</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pinMode<span class="op">(</span>JA6<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>digitalWrite<span class="op">(</span>JA6<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">// input on JB2</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>pinMode<span class="op">(</span>JB2<span class="op">,</span> INPUT<span class="op">);</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>digitalRead<span class="op">(</span>JB2<span class="op">)</span> <span class="op">==</span> HIGH<span class="op">)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"1 on JB2"</span><span class="op">);</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"0 on JB2"</span><span class="op">);</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">// ----------------------------------------</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">// alternatively...</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">// ----------------------------------------</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">// output 0 on JA6</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>DDR_JA <span class="op">|=</span> <span class="op">(</span><span class="dv">1</span><span class="op">&lt;&lt;</span><span class="dv">6</span><span class="op">);</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>PORT_JA <span class="op">&amp;=</span> <span class="op">~(</span><span class="dv">1</span><span class="op">&lt;&lt;</span><span class="dv">6</span><span class="op">);</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">// read input on JB2</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>DDR_JB <span class="op">%=</span> <span class="op">~(</span><span class="dv">1</span><span class="op">&lt;&lt;</span><span class="dv">2</span><span class="op">);</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>PIN_JB <span class="op">&amp;</span> <span class="op">(</span><span class="dv">1</span><span class="op">&lt;&lt;</span><span class="dv">2</span><span class="op">))</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"1 on JB2"</span><span class="op">);</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"0 on JB2"</span><span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Since the new pinout does not align with the pinout of the Leonardo, I made a custom board variant, which involved writing a new <code>pins_arduino.h</code> and adding an entry to <code>boards.txt</code> for the board (or rather modifying those of the Leonardo). One challenge was getting the lower clock speed to cooperate, since the USB functionality depends on a hard-coded value in the bootloader. I could have figured out how to modify the bootloader, but instead I opted to use the <a href="https://www.sparkfun.com/pro-micro-3-3v-8mhz.html">3.3V 8MHz SparkFun Pro Micro’s</a> bootloader which already addressed this.</p>
+<p><img src="pmodthingy_in_boards.png" class="img-fluid"></p>
 
 
 

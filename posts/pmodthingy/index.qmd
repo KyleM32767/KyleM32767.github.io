@@ -1,12 +1,49 @@
 ---
 title: "PMOD Thingy"
-date: "2025-07-02"
+date: "2024-12-17"
 categories: [Research]
 image: "board.jpg"
-description: This is thumbnail text
+description: Arduino Leonardo based PCB to streamline FPGA experiments
 ---
 
+[written 2 Jul 2025]
 
+***[View the GitHub repository for the PMOD Thingy here](https://github.com/KyleM32767/PMOD-Thingy/)***
 
+![](board.jpg)
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+Typically for projects on FPGA development boards, one would use the on-board switches and LEDs to control the FPGA. However, most of my research involves the board being inside a laser microscope enclosure, such as my [Laser Fault Injection project](../lfi_mqp/index.qmd) and [the LaserEscape paper](../laserescape/index.qmd). This means I can't touch it, and even if I could touch it, that would mess up the focus and aiming of the laser. I connected an Arduino to the PMOD headers and communicated to from a computer outside the enclosure over UART. The PMOD Thingy is a custom Arduino board designed in KiCad based on the Arduino Leonardo specifically designed for this purpose, with IO pins in the shape of PMOD headers, as well as another set of passthrough pins for oscilloscope probes.
+
+The schematic is very similar to the Arduino Leonardo, which I chose as a basis since the built-in USB makes the schematic simpler and frees up the UART interface (on the Uno, UART is shared between pins 0/1 and the USB port). The main differences are that it runs on 3.3V instead of 5V, there is a slower 8MHz clock, the barrel jack was removed, and the pins were remapped. I remapped the pins such that all of IO port B was on one PMOD header, and all of IO port D was another PMOD header. This allows for efficient, atomic reads and writes to all pins on a PMOD header, if that is desired.
+
+```c++
+// output 0 on JA6
+pinMode(JA6, OUTPUT);
+digitalWrite(JA6, LOW);
+
+// input on JB2
+pinMode(JB2, INPUT);
+if (digitalRead(JB2) == HIGH)
+	Serial.println("1 on JB2");
+else
+	Serial.println("0 on JB2");
+
+// ----------------------------------------
+// alternatively...
+// ----------------------------------------
+
+// output 0 on JA6
+DDR_JA |= (1<<6);
+PORT_JA &= ~(1<<6);
+
+// read input on JB2
+DDR_JB %= ~(1<<2);
+if (PIN_JB & (1<<2))
+	Serial.println("1 on JB2");
+else
+	Serial.println("0 on JB2");
+```
+
+Since the new pinout does not align with the pinout of the Leonardo, I made a custom board variant, which involved writing a new `pins_arduino.h` and adding an entry to `boards.txt` for the board (or rather modifying those of the Leonardo). One challenge was getting the lower clock speed to cooperate, since the USB functionality depends on a hard-coded value in the bootloader. I could have figured out how to modify the bootloader, but instead I opted to use the [3.3V 8MHz SparkFun Pro Micro's](https://www.sparkfun.com/pro-micro-3-3v-8mhz.html) bootloader which already addressed this.
+
+![](pmodthingy_in_boards.png)
