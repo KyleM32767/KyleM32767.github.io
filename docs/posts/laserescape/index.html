@@ -6,8 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-07-02">
-<meta name="description" content="This is thumbnail text">
+<meta name="dcterms.date" content="2024-10-30">
+<meta name="description" content="FPGA-based sensor and moving-target defense to mayhaps thwart LVP">
 
 <title>LaserEscape: Detecting and Mitigating Optical Probing Attacks – Kyle Mitard</title>
 <style>
@@ -130,7 +130,7 @@ ul.task-list li input[type="checkbox"] {
       <h1 class="title">LaserEscape: Detecting and Mitigating Optical Probing Attacks</h1>
                   <div>
         <div class="description">
-          This is thumbnail text
+          FPGA-based sensor and moving-target defense to mayhaps thwart LVP
         </div>
       </div>
                           <div class="quarto-categories">
@@ -147,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">July 2, 2025</p>
+        <p class="date">October 30, 2024</p>
       </div>
     </div>
     
@@ -166,9 +166,30 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+<p><strong><em><a href="https://dl.acm.org/doi/abs/10.1145/3676536.3676822">Read the paper here</a></em></strong></p>
+<section id="wait-what-are-you-even-saying" class="level2">
+<h2 class="anchored" data-anchor-id="wait-what-are-you-even-saying">wait what are you even saying</h2>
+<p><a href="https://en.wikipedia.org/wiki/Laser_voltage_prober">Laser Voltage Probing (LVP)</a> is a novel and powerful technique for IC failure analysis. Essentially you shoot a laser at a chip, and the reflection is modulated based on activity on the chip. Based on this modulation, you can do one of two things…</p>
+<ul>
+<li>filter based on frequency to make a heatmap of signals of a certain frequency</li>
+<li>average many (thousands or millions) reflections to “probe” a signal at a point</li>
+</ul>
+<p>The laser is different from <a href="../../posts/lfi_mqp/index.html">laser fault injection</a> in that it uses a longer wavelength that doesn’t induce photocurrents. As well as this works for failure analysis, it has also proven to be just as powerful in <a href="https://link.springer.com/chapter/10.1007/978-3-662-53140-2_8">reverse engineering and extracting cryptographic keys</a>. This paper proposes a method to detect these lasers and then do <a href="https://www.youtube.com/watch?v=t0sTNLdNhuE">some evasive maneuvers.</a></p>
+</section>
+<section id="the-1lutsensor" class="level2">
+<h2 class="anchored" data-anchor-id="the-1lutsensor">the 1LUTSensor</h2>
+<p>My part of the paper was primarily the sensor part. It is based on the 1LUTSensor, a sensor based on the</p>
+</section>
+<section id="the-linkedin-video" class="level2">
+<h2 class="anchored" data-anchor-id="the-linkedin-video">The LinkedIn video</h2>
+</section>
+<section id="the-youtube-video" class="level2">
+<h2 class="anchored" data-anchor-id="the-youtube-video">The YouTube video</h2>
+<p>I decided to make a YouTube video, and this has to be one of the most chaotic videos I ever uploaded.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/nYWkGSmvSeY" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

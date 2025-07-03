@@ -88,7 +88,35 @@
     "href": "posts/laserescape/index.html",
     "title": "LaserEscape: Detecting and Mitigating Optical Probing Attacks",
     "section": "",
-    "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+    "text": "Read the paper here"
+  },
+  {
+    "objectID": "posts/laserescape/index.html#wait-what-are-you-even-saying",
+    "href": "posts/laserescape/index.html#wait-what-are-you-even-saying",
+    "title": "LaserEscape: Detecting and Mitigating Optical Probing Attacks",
+    "section": "wait what are you even saying",
+    "text": "wait what are you even saying\nLaser Voltage Probing (LVP) is a novel and powerful technique for IC failure analysis. Essentially you shoot a laser at a chip, and the reflection is modulated based on activity on the chip. Based on this modulation, you can do one of two things…\n\nfilter based on frequency to make a heatmap of signals of a certain frequency\naverage many (thousands or millions) reflections to “probe” a signal at a point\n\nThe laser is different from laser fault injection in that it uses a longer wavelength that doesn’t induce photocurrents. As well as this works for failure analysis, it has also proven to be just as powerful in reverse engineering and extracting cryptographic keys. This paper proposes a method to detect these lasers and then do some evasive maneuvers."
+  },
+  {
+    "objectID": "posts/laserescape/index.html#the-1lutsensor",
+    "href": "posts/laserescape/index.html#the-1lutsensor",
+    "title": "LaserEscape: Detecting and Mitigating Optical Probing Attacks",
+    "section": "the 1LUTSensor",
+    "text": "the 1LUTSensor\nMy part of the paper was primarily the sensor part. It is based on the 1LUTSensor, a sensor based on the"
+  },
+  {
+    "objectID": "posts/laserescape/index.html#the-linkedin-video",
+    "href": "posts/laserescape/index.html#the-linkedin-video",
+    "title": "LaserEscape: Detecting and Mitigating Optical Probing Attacks",
+    "section": "The LinkedIn video",
+    "text": "The LinkedIn video"
+  },
+  {
+    "objectID": "posts/laserescape/index.html#the-youtube-video",
+    "href": "posts/laserescape/index.html#the-youtube-video",
+    "title": "LaserEscape: Detecting and Mitigating Optical Probing Attacks",
+    "section": "The YouTube video",
+    "text": "The YouTube video\nI decided to make a YouTube video, and this has to be one of the most chaotic videos I ever uploaded."
   },
   {
     "objectID": "posts/plant/index.html",
@@ -109,6 +137,6 @@
     "href": "projects.html",
     "title": "Projects",
     "section": "",
-    "text": "MOST OF THESE ARE UNDER CONSTRUCTION - STAY TUNED!\nor dont im not your dad\n\n\nKyle’s Blog? Portfolio? Things he’s made and done?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3lb “Beetleweight” Combat Robot\n\n\n\nHobby Projects\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nRISC-V CPU RTL Design\n\n\n\nSchoolwork\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nGuitar Hero, But With An Actual Guitar\n\n\n\nSchoolwork\n\nHobby Projects\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nLaserEscape: Detecting and Mitigating Optical Probing Attacks\n\n\n\nResearch\n\nYouTube Videos\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n1lb “Plastic Antweight” Combat Robot\n\n\n\nHobby Projects\n\nYouTube Videos\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nPOST TEMPLATE\n\n\n\nSchoolwork\n\nResearch\n\nHobby Projects\n\nYouTube Videos\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nWii Remote ELRS Control Scheme for Combat Robots\n\n\n\nHobby Projects\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nPMOD Thingy\n\n\n\nResearch\n\n\n\nArduino Leonardo based PCB to streamline FPGA experiments\n\n\n\n\n\n\nDec 17, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nMajor Qualifying Project: Laser Fault Injection\n\n\n\nSchoolwork\n\nYouTube Videos\n\n\n\nFPGAs deserve to feel pain. Pew pew pew\n\n\n\n\n\n\nApr 25, 2024\n\n\n\n\n\n\nNo matching items"
+    "text": "MOST OF THESE ARE UNDER CONSTRUCTION - STAY TUNED!\nor dont im not your dad\n\n\nKyle’s Blog? Portfolio? Things he’s made and done?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3lb “Beetleweight” Combat Robot\n\n\n\nHobby Projects\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nRISC-V CPU RTL Design\n\n\n\nSchoolwork\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nGuitar Hero, But With An Actual Guitar\n\n\n\nSchoolwork\n\nHobby Projects\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n1lb “Plastic Antweight” Combat Robot\n\n\n\nHobby Projects\n\nYouTube Videos\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nPOST TEMPLATE\n\n\n\nSchoolwork\n\nResearch\n\nHobby Projects\n\nYouTube Videos\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nWii Remote ELRS Control Scheme for Combat Robots\n\n\n\nHobby Projects\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nPMOD Thingy\n\n\n\nResearch\n\n\n\nArduino Leonardo based PCB to streamline FPGA experiments\n\n\n\n\n\n\nDec 17, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nLaserEscape: Detecting and Mitigating Optical Probing Attacks\n\n\n\nResearch\n\nYouTube Videos\n\n\n\nFPGA-based sensor and moving-target defense to mayhaps thwart LVP\n\n\n\n\n\n\nOct 30, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nMajor Qualifying Project: Laser Fault Injection\n\n\n\nSchoolwork\n\nYouTube Videos\n\n\n\nFPGAs deserve to feel pain. Pew pew pew\n\n\n\n\n\n\nApr 25, 2024\n\n\n\n\n\n\nNo matching items"
   }
 ]

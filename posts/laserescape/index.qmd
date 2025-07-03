@@ -1,10 +1,31 @@
 ---
 title: "LaserEscape: Detecting and Mitigating Optical Probing Attacks"
-date: "2025-07-02"
+date: "2024-10-30"
 categories: [Research, YouTube Videos]
 image: "../../placeholder.JPG"
-description: This is thumbnail text
+description: FPGA-based sensor and moving-target defense to mayhaps thwart LVP
 ---
 
+***[Read the paper here](https://dl.acm.org/doi/abs/10.1145/3676536.3676822)***
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+## wait what are you even saying
+
+[Laser Voltage Probing (LVP)](https://en.wikipedia.org/wiki/Laser_voltage_prober) is a novel and powerful technique for IC failure analysis. Essentially you shoot a laser at a chip, and the reflection is modulated based on activity on the chip. Based on this modulation, you can do one of two things...
+
+* filter based on frequency to make a heatmap of signals of a certain frequency
+* average many (thousands or millions) reflections to "probe" a signal at a point
+
+The laser is different from [laser fault injection](../lfi_mqp/index.qmd) in that it uses a longer wavelength that doesn't induce photocurrents. As well as this works for failure analysis, it has also proven to be just as powerful in [reverse engineering and extracting cryptographic keys](https://link.springer.com/chapter/10.1007/978-3-662-53140-2_8). This paper proposes a method to detect these lasers and then do [some evasive maneuvers.](https://www.youtube.com/watch?v=t0sTNLdNhuE)
+
+
+## the 1LUTSensor
+
+My part of the paper was primarily the sensor part. It is based on the 1LUTSensor, a sensor based on the
+
+## The LinkedIn video
+
+## The YouTube video
+
+I decided to make a YouTube video, and this has to be one of the most chaotic videos I ever uploaded.
+
+{{< video https://www.youtube.com/watch?v=nYWkGSmvSeY >}}
