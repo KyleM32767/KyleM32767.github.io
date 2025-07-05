@@ -6,8 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-07-02">
-<meta name="description" content="This is thumbnail text">
+<meta name="dcterms.date" content="2024-10-26">
+<meta name="description" content="Why don’t you use a Wii Remote for your robot?">
 
 <title>Wii Remote ELRS Control Scheme for Combat Robots – Kyle Mitard</title>
 <style>
@@ -42,6 +42,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-cc63fce9873912f1bbbccf05079cc9ea.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="../../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -130,7 +132,7 @@ ul.task-list li input[type="checkbox"] {
       <h1 class="title">Wii Remote ELRS Control Scheme for Combat Robots</h1>
                   <div>
         <div class="description">
-          This is thumbnail text
+          Why don’t you use a Wii Remote for your robot?
         </div>
       </div>
                           <div class="quarto-categories">
@@ -146,7 +148,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">July 2, 2025</p>
+        <p class="date">October 26, 2024</p>
       </div>
     </div>
     
@@ -165,9 +167,48 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+<p>Combat robots, particularly the smaller weight classes, are powered by hobby RC electronics - stuff used for RC planes, drones, cars, etc. To control their robots, they typically use something like <a href="https://www.frsky-rc.com/product/taranis-q-x7-2/">this</a>, or <a href="https://radiomasterrc.com/products/zorro-radio-controller?variant=46486367371456">this</a>, or even <a href="https://radiomasterrc.com/products/mt12-surface-radio-controller?variant=48008718057703">this</a>, at least I think. I am not familiar with these sorts of things, because I took a different approach: the glorious Wii Remote! Why? I’m glad you asked!</p>
+<ul>
+<li>It’s funny</li>
+<li>As a certified Nintendo kid (I even had a Wii U back in the day!) the controller is very familiar</li>
+<li>Stop asking questions - my robot is literally called “Who Cares?”</li>
+</ul>
+<section id="do-you-use-motion-controls" class="level2">
+<h2 class="anchored" data-anchor-id="do-you-use-motion-controls">Do you use motion controls?</h2>
+<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="20240414_214331.mp4"></video></div>
+<p>Absolutely! The controls are…</p>
+<ul>
+<li>drive normal: hold Z + nunchuk stick</li>
+<li>drive inverted: hold C + nunchuk stick</li>
+<li>weapon: hold A+B + tilt Wii Remote up and down</li>
+</ul>
+<p>All controls have a <a href="https://en.wikipedia.org/wiki/Dead_man%27s_switch">dead man’s switch</a> so I don’t do anything weird by putting down the controller.</p>
+</section>
+<section id="the-old-and-bad-approach---bluetooth-to-esp32" class="level2">
+<h2 class="anchored" data-anchor-id="the-old-and-bad-approach---bluetooth-to-esp32">The old and bad approach - Bluetooth to ESP32</h2>
+<p>The Wii Remote connects a Wii console via Bluetooth. (sidenote: as an older gen Z who witnessed the transition to Bluetooth headphones and <a href="https://www.bbc.com/news/technology-37303181">the death of the headphone jack</a>, I had no idea Bluetooth has been around that long) The immediately obvious idea is to stick an ESP32 inside the robot and use it as my receiver, and it’s what I did at first for <a href="../../posts/plant/index.html">my plastic antweight</a>.</p>
+<p>This approach works fine until it doesn’t, as the ESP32 dev boards are somewhat sensitive to the noise that comes from the back EMF of motors, the voltage sags from dishing out hits, and any shenanigans that happen when the robot gets hit. Eventually this came to a point where the connection would cut out after making a big hit, and upon reconnection I would lost drive. (But hey, at least the failsafe worked, and the drive and weapon stopped when this happened!) I suspected this was a voltage sag issue until a commenter on my YouTube video shared a similar story…</p>
+<p><img src="comment.png" class="img-fluid" alt="from @Anguriel1986, Great video!  Loved the combat and the humor. I'm not sure if it's the same thing, but I had a similar controller disconnect issue with my ant weight (also using an ESP32 and bluetooth controller).  The issue turned out to be the boot button on the microcontroller.  Sometimes big hits would cause the button to trigger, the board to reboot, and the controller to disconnect until I went through the pairing process again.  Other times it would still think the controller was connected, but wouldn't accept input until I fully shut down and re-paired the controller.  As a short term fix, a big glob of hot glue on the button worked great! Reply from me: THAT MAKES SO MUCH SENSE! What you're describing is basically what happened. I didn't show it, but in that final grudge where the drum split, the same thing happened where it died and couldn't accept input. We opened the box, power cycled, and just as you described, it came back to life."></p>
+<p>Is that what happened? I don’t know, as by the time they left that comment, I had already moved onto an improved setup. I was in the process of building my first <a href="../../posts/beetleweight/index.html">beetleweight</a> for <a href="nhrl.io">NHRL</a>. I wanted to move away from the direct to ESP32 setup, not only because of the aforementioned problems being amplified with bigger and tougher robots, but also I’ve heard stories of people having signal issues with bluetooth control schemes at NHRL due to there being tons of Wifi traffic.</p>
+</section>
+<section id="the-better-approach---elrs" class="level2">
+<h2 class="anchored" data-anchor-id="the-better-approach---elrs">The better approach - ELRS</h2>
+<p>What I wanted was a box with some serial interface that the ESP32 could talk to on one side and an antenna on the other side. The idea was that I’d have a “bridge” of sorts that would talk to the Wii Remote over Bluetooth and talk to the robot over a more standard RC link. That way, the thing that transmits from outside the box to inside the box was an off-the-shelf system that received extensive failsafe and interference testing, and it would allow me to use a lighter and more robust off-the-shelf reciever.</p>
+<p><img src="unnamed.jpg" class="img-fluid"></p>
+<p>I settled with <a href="https://www.expresslrs.org/">ELRS</a>, a high-performance open source RC link, in particular one of <a href="https://betafpv.com/products/elrs-micro-tx-module">these Backpack modules</a>. They are meant to retrofit a non-ELRS transmitter to be compatible, but it turns out the interface is just a 400k baud UART connection. This also came with the added benefit of allowing me to use <a href="https://betafpv.com/collections/expresslrs-series/products/elrs-lite-receiver">the smallest 3ch PWM receiver on the market</a> that I know of. The bridge initially consisted of…</p>
+<ul>
+<li>Wii Remote talks to ESP32 over Bluetooth</li>
+<li>ESP32 talks to Arduino Uno over I2C</li>
+<li>Arduino Uno talks to ELRS TX module over UART</li>
+<li>ELRS TX module talks to robot</li>
+<li>Robot KOs other robot (ideally)</li>
+</ul>
+<p><img src="20240823_002548.jpg" class="img-fluid"></p>
+<p>I powered the three parts of the bridge off of a cell phone power bank because that’s the most convenient and readily available solution. I eventually made a really cool stand to make the whole bridge resemble a Wii console becuase why not?</p>
+<p>The Arduino Uno was there between the ESP32 and ELRS TX module because the code I used to talk to the TX module was based on <a href="https://github.com/kkbin505/Arduino-Transmitter-for-ELRS">this Arduino Uno based ELRS transmitter I found on GitHub</a>, and I wasn’t sure if 3.3V logic on the ESP32 could work with the TX module. Eventually I realized this was incorrect and ditched the ESP32, which makes for one less cable to deal with. Eventually I want to make a dedicated custom PCB that to make the whole setup look nice, but every time I work on combat robots, I find myself too occupied with the robot itself to give this any significant thought.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -570,6 +611,7 @@ ul.task-list li input[type="checkbox"] {
   });
   </script>
 </div> <!-- /content -->
+<script>videojs(video_shortcode_videojs_video1);</script>
 
 
 

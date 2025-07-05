@@ -6,13 +6,16 @@ about:
   links:
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
+      href: https://www.linkedin.com/in/kyle-mitard62/
     - icon: github
       text: Github
-      href: https://github.com
+      href: https://github.com/KyleM32767
     - icon: envelope-at-fill
       text: Email
       href: mailto:krmitard@wpi.edu
+    - icon: file-earmark-richtext
+      text: Google Scholar
+      href: https://scholar.google.com/citations?user=tloIyQIAAAAJ
     - icon: youtube
       text: Kyle's Maybe Electrical Emporium
       href: https://www.youtube.com/channel/UCtGWKR7W_5xtZDwKDi8d-TQ

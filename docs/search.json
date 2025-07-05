@@ -11,7 +11,28 @@
     "href": "posts/wiimote_elrs/index.html",
     "title": "Wii Remote ELRS Control Scheme for Combat Robots",
     "section": "",
-    "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+    "text": "Combat robots, particularly the smaller weight classes, are powered by hobby RC electronics - stuff used for RC planes, drones, cars, etc. To control their robots, they typically use something like this, or this, or even this, at least I think. I am not familiar with these sorts of things, because I took a different approach: the glorious Wii Remote! Why? I’m glad you asked!"
+  },
+  {
+    "objectID": "posts/wiimote_elrs/index.html#do-you-use-motion-controls",
+    "href": "posts/wiimote_elrs/index.html#do-you-use-motion-controls",
+    "title": "Wii Remote ELRS Control Scheme for Combat Robots",
+    "section": "Do you use motion controls?",
+    "text": "Do you use motion controls?\n\nAbsolutely! The controls are…\n\ndrive normal: hold Z + nunchuk stick\ndrive inverted: hold C + nunchuk stick\nweapon: hold A+B + tilt Wii Remote up and down\n\nAll controls have a dead man’s switch so I don’t do anything weird by putting down the controller."
+  },
+  {
+    "objectID": "posts/wiimote_elrs/index.html#the-old-and-bad-approach---bluetooth-to-esp32",
+    "href": "posts/wiimote_elrs/index.html#the-old-and-bad-approach---bluetooth-to-esp32",
+    "title": "Wii Remote ELRS Control Scheme for Combat Robots",
+    "section": "The old and bad approach - Bluetooth to ESP32",
+    "text": "The old and bad approach - Bluetooth to ESP32\nThe Wii Remote connects a Wii console via Bluetooth. (sidenote: as an older gen Z who witnessed the transition to Bluetooth headphones and the death of the headphone jack, I had no idea Bluetooth has been around that long) The immediately obvious idea is to stick an ESP32 inside the robot and use it as my receiver, and it’s what I did at first for my plastic antweight.\nThis approach works fine until it doesn’t, as the ESP32 dev boards are somewhat sensitive to the noise that comes from the back EMF of motors, the voltage sags from dishing out hits, and any shenanigans that happen when the robot gets hit. Eventually this came to a point where the connection would cut out after making a big hit, and upon reconnection I would lost drive. (But hey, at least the failsafe worked, and the drive and weapon stopped when this happened!) I suspected this was a voltage sag issue until a commenter on my YouTube video shared a similar story…\n\nIs that what happened? I don’t know, as by the time they left that comment, I had already moved onto an improved setup. I was in the process of building my first beetleweight for NHRL. I wanted to move away from the direct to ESP32 setup, not only because of the aforementioned problems being amplified with bigger and tougher robots, but also I’ve heard stories of people having signal issues with bluetooth control schemes at NHRL due to there being tons of Wifi traffic."
+  },
+  {
+    "objectID": "posts/wiimote_elrs/index.html#the-better-approach---elrs",
+    "href": "posts/wiimote_elrs/index.html#the-better-approach---elrs",
+    "title": "Wii Remote ELRS Control Scheme for Combat Robots",
+    "section": "The better approach - ELRS",
+    "text": "The better approach - ELRS\nWhat I wanted was a box with some serial interface that the ESP32 could talk to on one side and an antenna on the other side. The idea was that I’d have a “bridge” of sorts that would talk to the Wii Remote over Bluetooth and talk to the robot over a more standard RC link. That way, the thing that transmits from outside the box to inside the box was an off-the-shelf system that received extensive failsafe and interference testing, and it would allow me to use a lighter and more robust off-the-shelf reciever.\n\nI settled with ELRS, a high-performance open source RC link, in particular one of these Backpack modules. They are meant to retrofit a non-ELRS transmitter to be compatible, but it turns out the interface is just a 400k baud UART connection. This also came with the added benefit of allowing me to use the smallest 3ch PWM receiver on the market that I know of. The bridge initially consisted of…\n\nWii Remote talks to ESP32 over Bluetooth\nESP32 talks to Arduino Uno over I2C\nArduino Uno talks to ELRS TX module over UART\nELRS TX module talks to robot\nRobot KOs other robot (ideally)\n\n\nI powered the three parts of the bridge off of a cell phone power bank because that’s the most convenient and readily available solution. I eventually made a really cool stand to make the whole bridge resemble a Wii console becuase why not?\nThe Arduino Uno was there between the ESP32 and ELRS TX module because the code I used to talk to the TX module was based on this Arduino Uno based ELRS transmitter I found on GitHub, and I wasn’t sure if 3.3V logic on the ESP32 could work with the TX module. Eventually I realized this was incorrect and ditched the ESP32, which makes for one less cable to deal with. Eventually I want to make a dedicated custom PCB that to make the whole setup look nice, but every time I work on combat robots, I find myself too occupied with the robot itself to give this any significant thought."
   },
   {
     "objectID": "posts/pmodthingy/index.html",
@@ -88,35 +109,42 @@
     "href": "posts/laserescape/index.html",
     "title": "LaserEscape: Detecting and Mitigating Optical Probing Attacks",
     "section": "",
-    "text": "Read the paper here"
+    "text": "Read the paper here\nView the source code for my sensor here"
   },
   {
-    "objectID": "posts/laserescape/index.html#wait-what-are-you-even-saying",
-    "href": "posts/laserescape/index.html#wait-what-are-you-even-saying",
+    "objectID": "posts/laserescape/index.html#hol-up-what-are-you-even-saying",
+    "href": "posts/laserescape/index.html#hol-up-what-are-you-even-saying",
     "title": "LaserEscape: Detecting and Mitigating Optical Probing Attacks",
-    "section": "wait what are you even saying",
-    "text": "wait what are you even saying\nLaser Voltage Probing (LVP) is a novel and powerful technique for IC failure analysis. Essentially you shoot a laser at a chip, and the reflection is modulated based on activity on the chip. Based on this modulation, you can do one of two things…\n\nfilter based on frequency to make a heatmap of signals of a certain frequency\naverage many (thousands or millions) reflections to “probe” a signal at a point\n\nThe laser is different from laser fault injection in that it uses a longer wavelength that doesn’t induce photocurrents. As well as this works for failure analysis, it has also proven to be just as powerful in reverse engineering and extracting cryptographic keys. This paper proposes a method to detect these lasers and then do some evasive maneuvers."
+    "section": "Hol up what are you even saying",
+    "text": "Hol up what are you even saying\nLaser Voltage Probing (LVP) is a novel and powerful technique for IC failure analysis. Essentially you shoot a laser at a chip, and the reflection is modulated based on activity on the chip. Based on this modulation, you can do one of two things…\n\nfilter based on frequency to make a heatmap of signals of a certain frequency\naverage many (thousands or millions) reflections to “probe” a signal at a point\n\nThe laser is different from laser fault injection in that it uses a longer wavelength that doesn’t induce photocurrents. As well as this works for failure analysis, it has also proven to be just as powerful in reverse engineering and extracting cryptographic keys. This paper proposes a method to detect these lasers and then do some evasive maneuvers.\nJust as I was wrapping up that project, WPI purchased a Hamamatsu PHEMOS-X equipped with a 1300nm laser and InGaAs camera for photon emission to observe chips with a 5x, 20x, 50x, and 71x lens. I learned to use this machine for this project and future ones. Each of those lenses, so I’m told, is worth more than my car, and the whole machine is probably worth more than me (somewhere in the low 7 figures). So uhhhh I better not break anything…"
   },
   {
     "objectID": "posts/laserescape/index.html#the-1lutsensor",
     "href": "posts/laserescape/index.html#the-1lutsensor",
     "title": "LaserEscape: Detecting and Mitigating Optical Probing Attacks",
-    "section": "the 1LUTSensor",
-    "text": "the 1LUTSensor\nMy part of the paper was primarily the sensor part. It is based on the 1LUTSensor, a sensor based on the"
+    "section": "The 1LUTSensor",
+    "text": "The 1LUTSensor\nMy part of the paper was primarily the sensor part. It is based on the 1LUTSensor, which was designed to sense slight power fluctuations indirectly by measuring the delay of a lookup table.\n\nEssentially, a clock signal one goes to the clock input of a register, and the other goes through a lookup table and then to the data input of the register. On both paths, there is a configurable delay line, which is process, voltage, and temperature invariant, and we set these delays such that the output is metastable. That is, the rising edge of the data input is close enough to the rising edge of the clock input such that the setup and hold times are violated, and thus the register cannot reliably sample the data input. When this happens, the output randomly flips between 1 and 0, and the distribution of 1s and 0s depends on whether it is closer to the boundary of the setup time (constant 1 case) or hold time (constant zero case).\nThe original implementation of this was used for power analysis attacks, particularly for cloud FPGA services where multiple users deploy their designs in parallel on the same FPGA. The basic idea is…\n\nincreased power heats up device\nincreased heat increases the delay in LUTs\nincreased delay in LUTs increases zeros\n\nThe idea is that since the LVP laser locally heats up the FPGA, the same principles apply. The key difference in my LVP detection implementation is that I run the clock much slower (10MHz vs 600MHz), since while they were observing power fluctuations in a circuit running at speeds on the order of 10MHz, I was detecting laser pulses on the order of 1ms.\nTo detect the laser, I used a simple scheme of checking if the number of zeros in a 256 clock cycles (limited by the interface I used to read this count). It’s not perfect, and is susceptible to false positives. Lately, I’ve been attempting to go down the rabbit hole of statistical analysis and signal processing to figure out a better way to detect it."
   },
   {
-    "objectID": "posts/laserescape/index.html#the-linkedin-video",
-    "href": "posts/laserescape/index.html#the-linkedin-video",
+    "objectID": "posts/laserescape/index.html#experimental-shenanigans",
+    "href": "posts/laserescape/index.html#experimental-shenanigans",
     "title": "LaserEscape: Detecting and Mitigating Optical Probing Attacks",
-    "section": "The LinkedIn video",
-    "text": "The LinkedIn video"
+    "section": "Experimental shenanigans",
+    "text": "Experimental shenanigans\nAn interesting design problem was how to control the experiment. In my laser fault injection project, there wasn’t much to control - an XOR gate, a register, a simple finite state machine, and thus I had the I/Os connected directly to PMOD headers, which I can read or write through the Arduino digital I/O. However, with this I had tons of knobs to turn and things to read: delay values to tune for metastability, counter values, detection thresholds, detection schemes, target circuits in the immediate area, etc.\nOriginally my experiments were simple enough that all the information I needed to read and write could fit into 8 bits, so I used SPI as it was easiest to implement. However this quickly stopped being the case as I added more modules and needed to do more. SPI is only as addressible and expandable as your ability to add wires for the CS signal, which means it is neither of those things, lest [insert Italian food joke here].\nThus I quickly pivoted to an I2C interface, since every module could have its own address. This meant not only did I no longer need to cram the “where” and the “what” into the same byte, but also I could easily add more modules by assigning another address.\n\nI used the same 3.3V modified Arduino Uno that I used in my laser fault injection project, and I designed and 3D printed a simple fixture in SolidWorks designed to hold the FPGA board and the Arduino to quickly and easily take it out of the PHEMOS. I lost access to that model due to licensing issues, and I designed an identical model in OnShape for the sake of open sourcing as much of the project as possible."
+  },
+  {
+    "objectID": "posts/laserescape/index.html#the-professional-looking-presentation-video",
+    "href": "posts/laserescape/index.html#the-professional-looking-presentation-video",
+    "title": "LaserEscape: Detecting and Mitigating Optical Probing Attacks",
+    "section": "The professional looking presentation video",
+    "text": "The professional looking presentation video\nFor the purposes of our presentation at ICCAD and a cool thing for my advisor to show off whenever it is relevant, my colleague and I made a proof of concept video, where my sensor detects the laser, and it triggers my colleague’s evasive maneuvers. (In practice the circuit would move far, far away but this is merely a demonstration)."
   },
   {
     "objectID": "posts/laserescape/index.html#the-youtube-video",
     "href": "posts/laserescape/index.html#the-youtube-video",
     "title": "LaserEscape: Detecting and Mitigating Optical Probing Attacks",
     "section": "The YouTube video",
-    "text": "The YouTube video\nI decided to make a YouTube video, and this has to be one of the most chaotic videos I ever uploaded."
+    "text": "The YouTube video\nI decided to make a YouTube video as well. The spiritual successor to the laser fault injection video if you will, and it has to be one of the most chaotic videos I ever made for my channel."
   },
   {
     "objectID": "posts/plant/index.html",
@@ -137,6 +165,6 @@
     "href": "projects.html",
     "title": "Projects",
     "section": "",
-    "text": "MOST OF THESE ARE UNDER CONSTRUCTION - STAY TUNED!\nor dont im not your dad\n\n\nKyle’s Blog? Portfolio? Things he’s made and done?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3lb “Beetleweight” Combat Robot\n\n\n\nHobby Projects\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nRISC-V CPU RTL Design\n\n\n\nSchoolwork\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nGuitar Hero, But With An Actual Guitar\n\n\n\nSchoolwork\n\nHobby Projects\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n1lb “Plastic Antweight” Combat Robot\n\n\n\nHobby Projects\n\nYouTube Videos\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nPOST TEMPLATE\n\n\n\nSchoolwork\n\nResearch\n\nHobby Projects\n\nYouTube Videos\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nWii Remote ELRS Control Scheme for Combat Robots\n\n\n\nHobby Projects\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nPMOD Thingy\n\n\n\nResearch\n\n\n\nArduino Leonardo based PCB to streamline FPGA experiments\n\n\n\n\n\n\nDec 17, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nLaserEscape: Detecting and Mitigating Optical Probing Attacks\n\n\n\nResearch\n\nYouTube Videos\n\n\n\nFPGA-based sensor and moving-target defense to mayhaps thwart LVP\n\n\n\n\n\n\nOct 30, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nMajor Qualifying Project: Laser Fault Injection\n\n\n\nSchoolwork\n\nYouTube Videos\n\n\n\nFPGAs deserve to feel pain. Pew pew pew\n\n\n\n\n\n\nApr 25, 2024\n\n\n\n\n\n\nNo matching items"
+    "text": "MOST OF THESE ARE UNDER CONSTRUCTION - STAY TUNED!\nor dont im not your dad\n\n\nKyle’s Blog? Portfolio? Things he’s made and done?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3lb “Beetleweight” Combat Robot\n\n\n\nHobby Projects\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nRISC-V CPU RTL Design\n\n\n\nSchoolwork\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nGuitar Hero, But With An Actual Guitar\n\n\n\nSchoolwork\n\nHobby Projects\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n1lb “Plastic Antweight” Combat Robot\n\n\n\nHobby Projects\n\nYouTube Videos\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nPOST TEMPLATE\n\n\n\nSchoolwork\n\nResearch\n\nHobby Projects\n\nYouTube Videos\n\n\n\nThis is thumbnail text\n\n\n\n\n\n\nJul 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nPMOD Thingy\n\n\n\nResearch\n\n\n\nArduino Leonardo based PCB to streamline FPGA experiments\n\n\n\n\n\n\nDec 17, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nLaserEscape: Detecting and Mitigating Optical Probing Attacks\n\n\n\nResearch\n\nYouTube Videos\n\n\n\nFPGA-based sensor and moving-target defense to mayhaps thwart laser voltage probing\n\n\n\n\n\n\nOct 30, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nWii Remote ELRS Control Scheme for Combat Robots\n\n\n\nHobby Projects\n\n\n\nWhy don’t you use a Wii Remote for your robot?\n\n\n\n\n\n\nOct 26, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nMajor Qualifying Project: Laser Fault Injection\n\n\n\nSchoolwork\n\nYouTube Videos\n\n\n\nFPGAs deserve to feel pain. Pew pew pew\n\n\n\n\n\n\nApr 25, 2024\n\n\n\n\n\n\nNo matching items"
   }
 ]

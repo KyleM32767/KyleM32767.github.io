@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2024-10-30">
-<meta name="description" content="FPGA-based sensor and moving-target defense to mayhaps thwart LVP">
+<meta name="description" content="FPGA-based sensor and moving-target defense to mayhaps thwart laser voltage probing">
 
 <title>LaserEscape: Detecting and Mitigating Optical Probing Attacks – Kyle Mitard</title>
 <style>
@@ -42,6 +42,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-cc63fce9873912f1bbbccf05079cc9ea.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="../../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -130,7 +132,7 @@ ul.task-list li input[type="checkbox"] {
       <h1 class="title">LaserEscape: Detecting and Mitigating Optical Probing Attacks</h1>
                   <div>
         <div class="description">
-          FPGA-based sensor and moving-target defense to mayhaps thwart LVP
+          FPGA-based sensor and moving-target defense to mayhaps thwart laser voltage probing
         </div>
       </div>
                           <div class="quarto-categories">
@@ -167,26 +169,49 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p><strong><em><a href="https://dl.acm.org/doi/abs/10.1145/3676536.3676822">Read the paper here</a></em></strong></p>
-<section id="wait-what-are-you-even-saying" class="level2">
-<h2 class="anchored" data-anchor-id="wait-what-are-you-even-saying">wait what are you even saying</h2>
+<p><strong><em><a href="https://github.com/vernamlab/LaserEscape/">View the source code for my sensor here</a></em></strong></p>
+<p><img src="setup1.JPG" class="img-fluid"></p>
+<section id="hol-up-what-are-you-even-saying" class="level2">
+<h2 class="anchored" data-anchor-id="hol-up-what-are-you-even-saying">Hol up what are you even saying</h2>
 <p><a href="https://en.wikipedia.org/wiki/Laser_voltage_prober">Laser Voltage Probing (LVP)</a> is a novel and powerful technique for IC failure analysis. Essentially you shoot a laser at a chip, and the reflection is modulated based on activity on the chip. Based on this modulation, you can do one of two things…</p>
 <ul>
 <li>filter based on frequency to make a heatmap of signals of a certain frequency</li>
 <li>average many (thousands or millions) reflections to “probe” a signal at a point</li>
 </ul>
-<p>The laser is different from <a href="../../posts/lfi_mqp/index.html">laser fault injection</a> in that it uses a longer wavelength that doesn’t induce photocurrents. As well as this works for failure analysis, it has also proven to be just as powerful in <a href="https://link.springer.com/chapter/10.1007/978-3-662-53140-2_8">reverse engineering and extracting cryptographic keys</a>. This paper proposes a method to detect these lasers and then do <a href="https://www.youtube.com/watch?v=t0sTNLdNhuE">some evasive maneuvers.</a></p>
+<p>The laser is different from <a href="../../posts/lfi_mqp/index.html">laser fault injection</a> in that it uses a longer wavelength that doesn’t induce photocurrents. As well as this works for failure analysis, it has also proven to be just as powerful in <a href="https://link.springer.com/chapter/10.1007/978-3-662-53140-2_8">reverse engineering and extracting cryptographic keys</a>. This paper proposes a method to detect these lasers and then do <a href="https://youtu.be/t0sTNLdNhuE?feature=shared&amp;t=15">some evasive maneuvers</a>.</p>
+<p>Just as I was wrapping up that project, WPI purchased a <a href="https://www.hamamatsu.com/us/en/product/semiconductor-manufacturing-support-systems/failure-analysis-system/C15765-01.html">Hamamatsu PHEMOS-X</a> equipped with a 1300nm laser and InGaAs camera for photon emission to observe chips with a 5x, 20x, 50x, and 71x lens. I learned to use this machine for this project and future ones. Each of those lenses, so I’m told, is worth more than my car, and the whole machine is probably worth more than me (somewhere in the low 7 figures). So uhhhh I better not break anything…</p>
 </section>
 <section id="the-1lutsensor" class="level2">
-<h2 class="anchored" data-anchor-id="the-1lutsensor">the 1LUTSensor</h2>
-<p>My part of the paper was primarily the sensor part. It is based on the 1LUTSensor, a sensor based on the</p>
+<h2 class="anchored" data-anchor-id="the-1lutsensor">The 1LUTSensor</h2>
+<p>My part of the paper was primarily the sensor part. It is based on <a href="https://bmt.ub.rub.de/index.php/TCHES/article/view/11240">the 1LUTSensor</a>, which was designed to sense slight power fluctuations indirectly by measuring the delay of a lookup table.</p>
+<p><img src="1lutsensor.png" class="img-fluid"></p>
+<p>Essentially, a clock signal one goes to the clock input of a register, and the other goes through a lookup table and then to the data input of the register. On both paths, there is a configurable delay line, which is process, voltage, and temperature invariant, and we set these delays such that the output is metastable. That is, the rising edge of the data input is close enough to the rising edge of the clock input such that the <a href="https://en.wikipedia.org/wiki/Flip-flop_(electronics)#Timing_considerations">setup and hold times</a> are violated, and thus the register cannot reliably sample the data input. When this happens, the output randomly flips between 1 and 0, and the distribution of 1s and 0s depends on whether it is closer to the boundary of the setup time (constant 1 case) or hold time (constant zero case).</p>
+<p>The original implementation of this was used for <a href="https://en.wikipedia.org/wiki/Power_analysis">power analysis attacks</a>, particularly for <a href="https://aws.amazon.com/ec2/instance-types/f2/">cloud FPGA services</a> where multiple users deploy their designs in parallel on the same FPGA. The basic idea is…</p>
+<ul>
+<li>increased power heats up device</li>
+<li>increased heat increases the delay in LUTs</li>
+<li>increased delay in LUTs increases zeros</li>
+</ul>
+<p>The idea is that since the LVP laser locally heats up the FPGA, the same principles apply. The key difference in my LVP detection implementation is that I run the clock much slower (10MHz vs 600MHz), since while they were observing power fluctuations in a circuit running at speeds on the order of 10MHz, I was detecting laser pulses on the order of 1ms.</p>
+<p>To detect the laser, I used a simple scheme of checking if the number of zeros in a 256 clock cycles (limited by the interface I used to read this count). It’s not perfect, and is susceptible to false positives. Lately, I’ve been attempting to go down the rabbit hole of statistical analysis and signal processing to figure out a better way to detect it.</p>
 </section>
-<section id="the-linkedin-video" class="level2">
-<h2 class="anchored" data-anchor-id="the-linkedin-video">The LinkedIn video</h2>
+<section id="experimental-shenanigans" class="level2">
+<h2 class="anchored" data-anchor-id="experimental-shenanigans">Experimental shenanigans</h2>
+<p>An interesting design problem was how to control the experiment. In my laser fault injection project, there wasn’t much to control - an XOR gate, a register, a simple finite state machine, and thus I had the I/Os connected directly to PMOD headers, which I can read or write through the Arduino digital I/O. However, with this I had tons of knobs to turn and things to read: delay values to tune for metastability, counter values, detection thresholds, detection schemes, target circuits in the immediate area, etc.</p>
+<p>Originally my experiments were simple enough that all the information I needed to read and write could fit into 8 bits, so I used <a href="https://en.wikipedia.org/wiki/Serial_Peripheral_Interface">SPI</a> as it was easiest to implement. However this quickly stopped being the case as I added more modules and needed to do more. SPI is only as addressible and expandable as your ability to add wires for the CS signal, which means it is neither of those things, lest [insert Italian food joke here].</p>
+<p>Thus I quickly pivoted to an <a href="https://en.wikipedia.org/wiki/I%C2%B2C">I2C interface</a>, since every module could have its own address. This meant not only did I no longer need to cram the “where” and the “what” into the same byte, but also I could easily add more modules by assigning another address.</p>
+<p><img src="mountCAD.png" class="img-fluid"></p>
+<p>I used the same <a href="https://learn.adafruit.com/arduino-tips-tricks-and-techniques/3-3v-conversion">3.3V modified Arduino Uno</a> that I used in my laser fault injection project, and I designed and 3D printed a simple fixture in SolidWorks designed to hold the FPGA board and the Arduino to quickly and easily take it out of the PHEMOS. I lost access to that model due to licensing issues, and <a href="https://cad.onshape.com/documents/80eabab15bac21f063df8135/w/712c3c46e5e04e5ff0f94ade/e/8ec6b85f0e99a09ba3a5aafd">I designed an identical model in OnShape</a> for the sake of open sourcing as much of the project as possible.</p>
+</section>
+<section id="the-professional-looking-presentation-video" class="level2">
+<h2 class="anchored" data-anchor-id="the-professional-looking-presentation-video">The professional looking presentation video</h2>
+<p>For the purposes of our presentation at ICCAD and a cool thing for my advisor to show off whenever it is relevant, my colleague and I made a proof of concept video, where my sensor detects the laser, and it triggers my colleague’s evasive maneuvers. (In practice the circuit would move far, far away but this is merely a demonstration).</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="demo.mp4"></video></div>
 </section>
 <section id="the-youtube-video" class="level2">
 <h2 class="anchored" data-anchor-id="the-youtube-video">The YouTube video</h2>
-<p>I decided to make a YouTube video, and this has to be one of the most chaotic videos I ever uploaded.</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/nYWkGSmvSeY" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>I decided to make a YouTube video as well. <em>The spiritual successor to the laser fault injection video</em> if you will, and it has to be one of the most chaotic videos I ever made for my channel.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/WhY4-Pi1zwI" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 
 
 </section>
@@ -592,6 +617,7 @@ ul.task-list li input[type="checkbox"] {
   });
   </script>
 </div> <!-- /content -->
+<script>videojs(video_shortcode_videojs_video1);</script>
 
 
 
