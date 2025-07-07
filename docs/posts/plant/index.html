@@ -6,8 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-07-02">
-<meta name="description" content="This is thumbnail text">
+<meta name="dcterms.date" content="2024-04-27">
+<meta name="description" content="Who cares?">
 
 <title>1lb “Plastic Antweight” Combat Robot – Kyle Mitard</title>
 <style>
@@ -41,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-cc63fce9873912f1bbbccf05079cc9ea.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dea41eb5020737fcd054cd11cd3b8eb4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -130,7 +130,7 @@ ul.task-list li input[type="checkbox"] {
       <h1 class="title">1lb “Plastic Antweight” Combat Robot</h1>
                   <div>
         <div class="description">
-          This is thumbnail text
+          Who cares?
         </div>
       </div>
                           <div class="quarto-categories">
@@ -147,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">July 2, 2025</p>
+        <p class="date">April 27, 2024</p>
       </div>
     </div>
     
@@ -166,10 +166,127 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<p>[written 5 jul 2025]</p>
+<p>Ah yes the gateway to combat robotics: the plastic antweight, often abbreviated as “PLAnt.” After being inspired by watching my friends at NHRL, I built a few PLAnts, and they were decently successful. I also made a YouTube video on them, and it somewhat caught on in the algorithm for some reason.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/EHDssAwbWuA" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<section id="the-gist" class="level2">
+<h2 class="anchored" data-anchor-id="the-gist">The gist</h2>
+<p>You ever see the TV show <a href="https://battlebots.fandom.com/wiki/BattleBots">BattleBots?</a> Basically that. The robots on the show are 250lbs and ridiculously expensive and difficult to build, but robot combat has a ton of smaller weight classes, particularly from recent advances in RC drones and lithium batteries that allow for super power dense. One of the smallest weight classes is the “plastic antweight,” which is designed to be affordable and accessibile. For those who are not familiar, here’s a quick summary of the rules…</p>
+<ul>
+<li>You have 3min to destroy your opponent’s robot
+<ul>
+<li>10s of no movement = KO</li>
+<li>In many competitions, exposed battery = KO for safety reasons</li>
+<li>You may tap out if you desire</li>
+<li>Competitors are judged on damage, control, aggression</li>
+<li>You are allowed one unstick (give robot a nudge out of an awkward position)</li>
+</ul></li>
+<li>Robot weight limit of 1lb
+<ul>
+<li>50% weight bonus for “non-traditional movement” (i.e.&nbsp;anything that isn’t wheels or treads)</li>
+</ul></li>
+<li>Robot must be made of 3D printed plastic parts
+<ul>
+<li>Only basic filaments are allowed (PLA, PETG, ABS, ASA)</li>
+<li>No specialty filaments (TPU, nylon, CF/GF reinforced filaments, etc)</li>
+<li>Exceptions for fasteners, motors, and electronics</li>
+</ul></li>
+<li>Robots must have an “active weapon”
+<ul>
+<li>spinner, lifter, crusher, etc.</li>
+</ul></li>
+<li>Be safe, don’t be dangerous
+<ul>
+<li>Radio fail-safe for drive and weapon</li>
+<li>Weapon lock</li>
+<li>Exposed power cutoff</li>
+<li>No deliberate entanglement</li>
+<li>Some banned weapons (flame/heat/explosions, EMPs, liquids, etc.)</li>
+</ul></li>
+</ul>
+</section>
+<section id="my-first-attempt" class="level2">
+<h2 class="anchored" data-anchor-id="my-first-attempt">My first attempt</h2>
+<p><img src="v1.jpg" class="img-fluid"></p>
+<p>Let’s paint a scenario - it’s a thursday in April 2023, and I just submitted the report for my <a href="../../posts/lfi_mqp/index.html">Laser Fault Injection MQP</a>. The WPI combat robotics club is hosting a PLAnt competition on Sunday - I should give it a try! So I download SolidWorks, and I can lear CAD, design a PLAnt, print it, and build it in 2 days right?</p>
+<p><img src="drawing.png" class="img-fluid"></p>
+<p>I had a simple idea of what I want. Vertical spinner, and completely invertible. Essentially everyone talks about how to flip yourself back over, but it’s not as common to eliminate the concept of upside down. I made some idea drawings, and a friend of mine showed me the ropes of SolidWorks.</p>
+<p>For drive, the robot used N20 brushed gearmotors to move it with foam wheels, driven by VEX MC20 speed controllers, and weapon was an Amazon special A2312 drone motor pressed into a wide drum, driven by some mystery BLHeli ESC, both of which were from my friends’ wares but functionally identical to the ones the club lends out. All this was powered by a 3s 450mAh LiPo battery that the club lends out to people for these competitions. For controls, I wanted to use a Wii remote because I didn’t have the typical RC transmitter and reciever people use but I did have a Wii remote and an ESP32 dev board.</p>
+<p><img src="v1cad.png" class="img-fluid"></p>
+<p>I’ll spare the details, but it was a long grind to design and build it. Poor scaling, frantic downsizing, BSODs, some design tweaks cut short by a corrupted file, an innefective wheel that became an effective spacer for that mysterious void in the CAD, and then I paid the ultimate price. While trying to reprogram the ESP32 at 3am the night before, I accidentally shorted the 11.2V LiPo battery to my computer’s 5V USB rail. <em>Pop!</em> My laptop is dead. Devistated, I take a minute to decide what to do over a game of Crazy Taxi (not to brag but I’m like really good at Crazy Taxi. Below is my high score, and no it is not from that night).</p>
+<p><img src="crazytaxi.jpg" class="img-fluid"></p>
+<p>Ultimately my friends convinced me to shove one of their recievers into the robot and get it running, and I succeeded. Back to the grind I go, and I was stressed. So much so, that when I was asked to name my robot, I gave the knee jerk response of “Who Cares?” And so, it stuck.</p>
+<p>I had one fight against what was essentially the predecessor to <a href="https://wiki.nhrl.io/wiki/index.php?title=Rhino">the 3lb robot Rhino</a>, and I KO’d them by taking out their wheel. Then I proceeded to drive into the wall and crack my chassis.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TDUJaJ4nNgw?si=tegbiVfS-OIbUurx&amp;start=17310" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
+</iframe>
+<p>The bot survived and was fixable, though I had a dead computer to deal with. My SSD was fine, though everything else wasn’t, and I needed to get a new laptop.</p>
+</section>
+<section id="who-cares-version-2" class="level2">
+<h2 class="anchored" data-anchor-id="who-cares-version-2">Who cares? Version 2</h2>
 <p><img src="20231209_154956.jpg" class="img-fluid"></p>
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+<p>As hectic of an experience that was, I was hooked and hungry for more, though with a bit less of a time crunch. For the competitions in the next school year, I decided to work through the summer on a V2 PLAnt. Some of the highlights include…</p>
+<ul>
+<li>Designed the chassis to be printed with more walls, so it could take more hits.</li>
+<li>The weapon had an actual rake angle to bite onto opponents (the weapon only spun one way, however)</li>
+<li>A proper hole in the power switch, so I don’t have to go at the top plate with pliers to make one.</li>
+<li>it said “who cares?” on the top plate, and the “o” was the switch hole!</li>
+<li>I got the Wii remote control scheme to work this time</li>
+<li>Added a 5V regulator to power the ESP32, protecting my USB port from the battery</li>
+</ul>
+<p>However, one thing I did not address was the flat sides, which would lead to the robot being stuck on its side. Surely that won’t happen right?</p>
+<p>In the inaugural competition in December 2023, the robot did quite well, getting pieces of the chassis chipped off, but plastic-welded with back on with a soldering iron. I made it to the semifinals, only to lose to a power issue that I talk about more in depth in my page on the <a href="../../posts/wiimote_elrs/index.html">Wii remote control scheme</a>. Unsatisfied, I asked the winner of the tournament, who beat the robot I lost to, for a grudge match to give me the ending I was hoping for. He agreed, and the results did not disappoint.</p>
+<p><img src="snap.png" class="img-fluid"> <img src="oops.png" class="img-fluid"></p>
+<p>In January 2024 I entered their next competition with the same chassis and a spare weapon, where I beat the power issues for one fight, only to then forfeit after they return again worse than ever after swapping a drive motor.</p>
+<p><img src="final.jpg" class="img-fluid"></p>
+<p>Then in April 2024, a week after competing with <a href="../../posts/beetleweight/index.html">my Beetleweight</a> for the first time, I shoved my receiver into my beat up PLAnt and entered into their last one for the school year. I would ultimately make it to the end and win in one of the craziest PLAnt fights they’ve seen, and one of the most difficult judges’ decision they’ve had to make at one of these competitions. We both lost our weapons and it ended in a pushing match, one that I managed to outmaneuver my opponent in.</p>
+<p><img src="trophy.png" class="img-fluid"></p>
+<p>All in all, the robot has had 11 total fights and an 8-3 record, all with that same chassis. All 11 fights were with the same chassis, which is frankly absurd given all the abuse it’s taken. If it does return, I want to make sure that I do not have to print a second chassis</p>
+<section id="some-highlighted-fights" class="level3">
+<h3 class="anchored" data-anchor-id="some-highlighted-fights">Some highlighted Fights…</h3>
+<section id="i-keep-flipping-them-upside-down" class="level4">
+<h4 class="anchored" data-anchor-id="i-keep-flipping-them-upside-down">I keep flipping them upside down</h4>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1sX9EwlLWOc?si=KbiANXYB8TdkZwLo&amp;start=15620" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
+</iframe>
+</section>
+<section id="tanking-hits-and-going-for-the-ko" class="level4">
+<h4 class="anchored" data-anchor-id="tanking-hits-and-going-for-the-ko">Tanking hits and going for the KO</h4>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1sX9EwlLWOc?si=KbiANXYB8TdkZwLo&amp;start=22688" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
+</iframe>
+</section>
+<section id="losing-to-a-power-issue-in-semifinals" class="level4">
+<h4 class="anchored" data-anchor-id="losing-to-a-power-issue-in-semifinals">Losing to a power issue in semifinals</h4>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1sX9EwlLWOc?si=KbiANXYB8TdkZwLo&amp;start=24835" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
+</iframe>
+</section>
+<section id="unsatisfied-i-get-the-glorious-end-i-hoped-for-in-a-grudge-match-against-the-december-champion" class="level4">
+<h4 class="anchored" data-anchor-id="unsatisfied-i-get-the-glorious-end-i-hoped-for-in-a-grudge-match-against-the-december-champion">Unsatisfied, I get the glorious end I hoped for in a grudge match against the December champion</h4>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1sX9EwlLWOc?si=KbiANXYB8TdkZwLo&amp;start=27555" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
+</iframe>
+</section>
+<section id="i-welded-that-piece-back-on" class="level4">
+<h4 class="anchored" data-anchor-id="i-welded-that-piece-back-on">I welded that piece back on</h4>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/P4epaQHwq0E?si=sP_iLlrW4GOEAb9M&amp;start=9490" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
+</iframe>
+</section>
+<section id="please-dont-die-please-dont-die-please-dont-die-please-dont-die" class="level4">
+<h4 class="anchored" data-anchor-id="please-dont-die-please-dont-die-please-dont-die-please-dont-die">Please don’t die please don’t die please don’t die please don’t die</h4>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/59zge9_FaKE?si=97tgyQypqkla6pL5&amp;start=9314" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
+</iframe>
+</section>
+<section id="we-meet-again-in-the-semifinals" class="level4">
+<h4 class="anchored" data-anchor-id="we-meet-again-in-the-semifinals">We meet again in the semifinals</h4>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/59zge9_FaKE?si=0KOTjDeUjAM-bze4&amp;start=22484" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
+</iframe>
+</section>
+<section id="the-epic-final-with-the-toughest-judges-decision-theyve-seen-yet" class="level4">
+<h4 class="anchored" data-anchor-id="the-epic-final-with-the-toughest-judges-decision-theyve-seen-yet">The epic final, with the toughest judges’ decision they’ve seen yet</h4>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/59zge9_FaKE?si=8QKLCooGmnBSDROB&amp;start=24726" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
+</iframe>
 
 
+</section>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
